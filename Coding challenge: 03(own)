@@ -1,0 +1,52 @@
+#Write the function encode(n) that takes a possibly-negative Python integer and returns the encoded integer as described above. For example:
+#encode(789) should return 113789
+#encode(-789) should return 213789
+#encode(1234512345) should return 12101234512345
+#encode(-1234512345) should return 22101234512345
+#encode(0) should return 1110
+
+
+#Finds and returns the number of digits
+#Number should be integer but not 0
+def sizeof(n):
+    i = 0
+    n = abs(n)
+    if n == 0:
+        return 1
+    while n > 0:
+        i += 1
+        n //= 10
+    return i
+
+
+def concatNumbers(x,y):
+    return (x*(10**sizeof(y))) + y  
+    
+    
+def sign(n):
+    if n < 0:
+        return 2
+    else:
+        return 1
+
+
+def concatFourNumbers(n, x, y, z):
+    concatLastTwoNum = concatNumbers(y, z)
+    concatFirstTwoNum = concatNumbers(n, x)
+    return concatNumbers(concatFirstTwoNum, concatLastTwoNum)
+
+
+def encode(n):
+    sign_Digit = sign(n)
+    number = abs(n)
+    count = sizeof(n)
+    count_Count = sizeof(count)
+    return concatFourNumbers(sign_Digit, count_Count, count, number)
+    
+
+    
+    
+    
+    
+    
+    
